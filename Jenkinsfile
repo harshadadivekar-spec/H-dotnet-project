@@ -33,20 +33,12 @@ pipeline {
                     bat "dotnet publish --no-restore --configuration Release --output .\\publish"
                 }
             }
-
-            stage('Deploy') {
-            steps {
-                // Example: Copy files to deployment server
-                bat 'xcopy /E /Y publish\\* C:\\inetpub\\wwwroot\\H-MyApp\\'
-            }
         }
 
-        
-
-
-    
+    }
     post {
         success {
             echo "Build, TEst and Publish stages completed successfully."
         }
     }
+}

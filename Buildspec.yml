@@ -1,0 +1,24 @@
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 8.0
+
+  pre_build:
+    commands:
+      - dotnet restore MyWebApp/MyWebApp.csproj
+
+  build:
+    commands:
+      - dotnet build MyWebApp/MyWebApp.csproj --configuration Release
+
+  post_build:
+    commands:
+      - dotnet publish MyWebApp/MyWebApp.csproj --configuration Release --output publish
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: publish
